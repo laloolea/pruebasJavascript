@@ -16,7 +16,8 @@ txt ="EJEMPLO CREACION OBJETO SIN CONSTRUCTOR (VALORES POR DEFAULT)"
 
 document.write("<br/><br/>"+txt.bold());
 
-var Persona = {nombre:"Pedro",
+var Persona = {
+    nombre:"Pedro",
  	pais:"Mexico",
  	nacionalidad:"Mexicana",
    	residencia:"Hermosillo"
