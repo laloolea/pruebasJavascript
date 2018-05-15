@@ -86,6 +86,8 @@ function ABB (){
 
 
 	this.ImprimirDescendente = function(){
+		if(this.raiz === null )return "No hay elementos";
+
 		ImprimirDescendente (this.raiz);
 	}
 
@@ -103,6 +105,7 @@ function ABB (){
 
 	}
 	this.ImprimirAscendente = function(){
+		//if(this.numElementos === 0 )return "No hay elementos";
 		ImprimirAscendente (this.raiz);
 	}
 
@@ -124,10 +127,11 @@ function ABB (){
 	}
 
 	this.Buscar = function(_valor){
+
 		var aux = this.raiz;
 		while(aux!== null && aux.valor !== _valor){
-        if(aux.valor < _valor)aux= aux.hijoIzq;
-        else aux= aux.hijoDer;
+        	if(aux.valor < _valor)aux= aux.hijoIzq;
+        	else aux = aux.hijoDer;
     	}
     	if(aux===null)return false;
 
@@ -151,19 +155,20 @@ function ABB (){
 
 		var aux;
 
-		while(colaDeEspera.dataStore.length!== 0){
+		while(!colaDeEspera.empty()){
 			aux = colaDeEspera.dequeue();
 			console.log(aux.valor);
 			if(aux.hijoIzq !== null)
 				colaDeEspera.enqueue(aux.hijoIzq);
 
 			if(aux.hijoDer !== null)
-				colaDeEspera.dequeue(aux.hijoDer);
+				colaDeEspera.enqueue(aux.hijoDer);
 		}
 
 	}
 
 }
+
 
 
 function Queue(){
@@ -196,9 +201,9 @@ function Queue(){
 	
 var arbolito = new ABB();
 
-arbolito.push(30);
+arbolito.push(10);
 
-arbolito.push(8);
+arbolito.push(3);
 arbolito.push(7);
 
 
@@ -208,29 +213,31 @@ arbolito.push(92);
 
 
 
-console.log("Impresion Descendente")
-arbolito.ImprimirDescendente();
-
-console.log("Impresion Ascendente")
+console.log("Imprimir ascendente  ");
 
 arbolito.ImprimirAscendente();
 
-console.log("Prueba pop se borra (92) e imprimir descendente");
-
-arbolito.pop(92);
+console.log("Imprimir descendente  ");
 
 arbolito.ImprimirDescendente();
-/*
+
+console.log("Imprimir por niveles  ");
+arbolito.ImprimirPorNiveles();
+
+console.log("Borrar numero 3 e imprimir descendente");
+
+arbolito.pop(3);
+
+arbolito.ImprimirDescendente();
+
 console.log("Prueba Vaciar")
 
 arbolito.Vaciar();
 
 arbolito.ImprimirDescendente();
-*/
-console.log("El elemento 92 esta en el arbol:  "+ arbolito.Buscar(92))
 
-console.log("Imprimir por niveles  ")
+console.log("El elemento 92 esta en el arbol:  "+ arbolito.Buscar(10));
 
-arbolito.ImprimirPorNiveles();
+
 
 
