@@ -1,12 +1,13 @@
 function ABB (){
 	
-	function Elemento (_valor){
+	function Elemento (_valor){// struct elemento
 	
 		this.valor = _valor
 		this.hijoIzq= null
 		this.hijoDer= null
 		
 	}
+
 	this.numElementos = 0
 
 	this.raiz=null //= new Elemento(),
@@ -199,7 +200,9 @@ function Queue(){
   }
 }
 	
-var arbolito = new ABB();
+var arbolito = Object.create(ABB.prototype)
+
+ABB.call(arbolito);
 
 arbolito.push(10);
 
