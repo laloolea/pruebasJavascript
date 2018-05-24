@@ -1,83 +1,89 @@
-function ABB (){
+var arbol = function ABB () {
 	
-	function Elemento (_valor){// struct elemento
-	
-		this.valor = _valor
-		this.hijoIzq= null
-		this.hijoDer= null
-		
-	}
+	Elemento :
+		devuelve_Elemento function()
+		return{ function  (_valor){// struct elemento
+		//return{
+			this.valor = _valor;
+			this.hijoIzq= null;
+			this.hijoDer= null;
+		//};
+	}},
 
-	this.numElementos = 0
+	numElementos:0,
 
-	this.raiz=null //= new Elemento(),
+	raiz:null,//= new Elemento(),
 
-	this.push = function (_valor){
-		var aux = this.raiz;
+	push :function(){
+		return {
+			function (_valor) {
 
-		while(aux !== null && _valor !== aux.valor){
+			var aux = this.raiz;
 
-			if(_valor > aux.valor){
-				if(aux.hijoDer === null)
-					aux.hijoDer = new Elemento(_valor);
+			while(aux !== null && _valor !== aux.valor){
 
-				aux= aux.hijoDer;
-			}else if(_valor < aux.valor){
-				if(aux.hijoIzq === null)
-					aux.hijoIzq = new Elemento(_valor);
-				aux = aux.hijoIzq
+				if(_valor > aux.valor){
+					if(aux.hijoDer === null)
+						aux.hijoDer = new Elemento(_valor);
+
+					aux= aux.hijoDer;
+				}else if(_valor < aux.valor){
+					if(aux.hijoIzq === null)
+						aux.hijoIzq = new Elemento(_valor);
+					aux = aux.hijoIzq
+				}
+
 			}
 
-		}
-
-		if(this.raiz=== null){
-			this.raiz = new Elemento(_valor);
-		}
-		this.numElementos++;
+			if(this.raiz=== null){
+				this.raiz = new Elemento(_valor);
+			}
+			this.numElementos++;
 
 
-	}
+	}};,
 
-	this.pop = function (_valor){
+	pop : function (_valor){
+		
+			var aux =this.raiz;
+			var padre = null;
 
-		var aux =this.raiz;
-		var padre = null;
+			while(aux !== null && aux.valor !== _valor){
+				padre=aux;
+	       		aux= _valor < aux.valor ? aux.hijoIzq : aux.hijoDer;
+			}
 
-		while(aux !== null && aux.valor !== _valor){
-			padre=aux;
-       		aux= _valor < aux.valor ? aux.hijoIzq : aux.hijoDer;
-		}
+			if(aux === null ) return false;
 
-		if(aux === null ) return false;
+			if(aux.hijoIzq===null && aux.hijoDer === null)
+	       		padre === null ? this.raiz=null: padre.hijoIzq === aux ? padre.hijoIzq = null : padre.hijoDer = null;
 
-		if(aux.hijoIzq===null && aux.hijoDer === null)
-       		padre === null ? this.raiz=null: padre.hijoIzq === aux ? padre.hijoIzq = null : padre.hijoDer = null;
+	    	else if (aux.hijoIzq !==null && aux.hijoDer === null)
+	    		padre === null ? this.raiz = aux.hijoIzq : padre.hijoIzq == aux ? padre.hijoIzq = aux.hijoIzq : padre.hijoDer = aux.hijoIzq;
 
-    	else if (aux.hijoIzq !==null && aux.hijoDer === null)
-    		padre === null ? this.raiz = aux.hijoIzq : padre.hijoIzq == aux ? padre.hijoIzq = aux.hijoIzq : padre.hijoDer = aux.hijoIzq;
+	    	else if (aux.hijoIzq === null & aux.hijoDer !==null)
+	       		padre === null ? this.raiz = aux.hijoDer : padre.hijoIzq == aux ? padre.hijoIzq = aux.hijoDer :
+	                        padre.hijoDer = aux.hijoDer;
 
-    	else if (aux.hijoIzq === null & aux.hijoDer !==null)
-       		padre === null ? this.raiz = aux.hijoDer : padre.hijoIzq == aux ? padre.hijoIzq = aux.hijoDer :
-                        padre.hijoDer = aux.hijoDer;
+			else{
 
-		else{
+			//var mayor = Object.create(ABB.prototype) 	
+			//var mayor = this.BuscarMayor(hijoIzq);
+			var mayor = new Elemento(this.BuscarMayor(aux.hijoIzq));
 
-		var mayor = new Elemento(this.BuscarMayor(aux.hijoIzq));
-
-		mayor.hijoDer =  aux.hijoDer;
-		padre === null ? this.raiz= aux.hijoIzq : padre.hijoIzq == aux ? padre.hijoIzq = aux.hijoIzq : padre.hijoDer = aux.hijoIzq;
-
-
-		this.numElementos--;
-    	return true;
-
-    }                        
+			mayor.hijoDer =  aux.hijoDer;
+			padre === null ? this.raiz= aux.hijoIzq : padre.hijoIzq == aux ? padre.hijoIzq = aux.hijoIzq : padre.hijoDer = aux.hijoIzq;
 
 
-	}
+			this.numElementos--;
+	    	return true;
+
+	    }                        
+	};
 
 
-	this.BuscarMayor = function(_raiz){
+	BuscarMayor : function(_raiz){
+		
 		while(_raiz.hijoDer!== null){
 			_raiz= _raiz.hijoDer;
 
@@ -149,8 +155,9 @@ function ABB (){
 			console.log("Esta vacia");
 			return;
 		}
-
-		var colaDeEspera = new Queue();
+		var colaDeEspera = Object.create(Queue.prototype);
+		Queue.call(colaDeEspera);
+		//var colaDeEspera = new Queue();
 
 		colaDeEspera.enqueue(this.raiz);
 
@@ -168,9 +175,7 @@ function ABB (){
 
 	}
 
-}
-
-
+};
 
 function Queue(){
   
@@ -200,7 +205,7 @@ function Queue(){
   }
 }
 	
-var arbolito = Object.create(ABB.prototype)
+var arbolito = Object.create(ABB.prototype);
 
 ABB.call(arbolito);
 
@@ -213,8 +218,9 @@ arbolito.push(7);
 arbolito.push(6);
 arbolito.push(92);
 
+arbolito.ImprimirAscendente();
 
-
+/*
 
 console.log("Imprimir ascendente  ");
 
@@ -240,7 +246,7 @@ arbolito.Vaciar();
 arbolito.ImprimirDescendente();
 
 console.log("El elemento 92 esta en el arbol:  "+ arbolito.Buscar(10));
-
+*/
 
 
 

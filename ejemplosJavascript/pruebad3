@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!--<!DOCTYPE html>
 <html>
 <head>
 <title>Arbol Balanceado</title>
@@ -10,8 +10,7 @@
 
 </body>
 </html>
-
-<!--
+-->
 <!DOCTYPE html>
 <html lang = "en">
    <head>
@@ -27,4 +26,3 @@
       </script>
    </body>
 </html>
--->
